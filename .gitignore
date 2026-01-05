@@ -1,12 +1,8 @@
 # =============================================================================
-# PRIVATE REPO .gitignore
+# PUBLIC REPO .gitignore
 # =============================================================================
-# This is the private repository version. Secrets and credentials are TRACKED
-# here (encrypted via git-crypt) but excluded from the public repo via
-# .gitignore.public and the sync workflow.
-#
-# Files matching patterns in .gitattributes are encrypted with git-crypt.
-# See docs/private-repo-setup.md for setup instructions.
+# This is the public repository. Secrets and credentials are NOT tracked here.
+# See the contributing guide for setup instructions.
 # =============================================================================
 
 # Terraform
@@ -31,7 +27,7 @@ ansible/roles/geerlingguy.*/
 Thumbs.db
 *~
 
-# IDE (optional - remove if you want to share IDE configs)
+# IDE
 .idea/
 .vscode/
 *.swp
@@ -51,30 +47,23 @@ venv/
 *.log
 logs/
 
-# Firmware images (too large for git, use S3)
+# Firmware images (too large for git)
 *.img
 *.img.xz
 *.raw
 *.raw.xz
 
-# =============================================================================
-# TRACKED IN PRIVATE REPO (encrypted via git-crypt)
-# =============================================================================
-# The following are NOT ignored in the private repo. They are:
-# - Tracked and encrypted via git-crypt (see .gitattributes)
-# - Excluded from public sync (see .gitignore.public)
-#
-# Secrets and credentials:
-#   .secrets/
-#   .project_settings/
-#   ansible/secrets/*.yml
-#   ansible/credentials/
-#   .vault_pass, .vault_password
-#   *.pem, *.key
-#   kubeconfig, talosconfig
-#   .mcp.json
-#
-# AI coding assistant context:
-#   CLAUDE.md, AGENT.md, AGENTS.md, GEMINI.md, CODEX.md
-#   .claude/, .gemini/, .codex/
-# =============================================================================
+# Secrets and credentials (not tracked in public repo)
+.secrets/
+.project_settings/
+ansible/secrets/*.yml
+!ansible/secrets/*.yml.example
+ansible/credentials/
+.vault_pass
+.vault_password
+*.pem
+*.key
+!*.key.example
+kubeconfig
+talosconfig
+.mcp.json
